@@ -1,0 +1,46 @@
+ generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id       Int            @id @default(autoincrement())
+  username      String
+  email         String         @unique
+  password      String
+  premium       Boolean        @default(false)
+  products      Product[] 
+  notifications Notification[]
+}
+
+model Product {
+  product_id     Int            @id @default(autoincrement())
+  name           String
+  url            String
+  user           User           @relation(fields: [user_id], references: [user_id])
+  user_id        Int
+  priceHistories PriceHistory[]
+  Notification   Notification[]
+}
+
+model PriceHistory {
+  price_id   Int      @id @default(autoincrement())
+  product    Product  @relation(fields: [product_id], references: [product_id])
+  product_id Int
+  price      Float
+  timestamp  DateTime @default(now())
+}
+
+model Notification {
+  notification_id Int      @id @default(autoincrement())
+  user            User     @relation(fields: [user_id], references: [user_id])
+  user_id         Int
+  product         Product  @relation(fields: [product_id], references: [product_id])
+  product_id      Int
+  message         String
+  timestamp       DateTime @default(now())
+}
