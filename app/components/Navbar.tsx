@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import logo from '../../images/price-tracker-high-resolution-logo-transparent.png'
+import logo from '../../assets/img/price-tracker-high-resolution-logo-transparent.png'
 
 const Navbar = () => {
   return (
