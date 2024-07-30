@@ -186,7 +186,7 @@ export default function Home() {
       </div>
 
       {/* testemonials */}
-      <div className="my-6 font-[sans-serif] my-20">
+      <div className="font-[sans-serif] my-20">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-extrabold text-gray-800">
             Testimonials
