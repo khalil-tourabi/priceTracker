@@ -5,6 +5,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const schema = z.object({
   username: z.string().min(1, { message: "Username is required" }),
@@ -18,6 +20,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 const Form = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -28,8 +31,26 @@ const Form = () => {
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        if (response.status === 409) {
+          return setError('username', { message: 'User already exists' })
+        }
+        return setError('email', { message: 'Email already exists' })
+      } else {
+        router.push('/dashboard')
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -88,7 +109,7 @@ const Form = () => {
           <p className="text-gray-800 text-sm mt-6 text-center">
             Already have an account?{" "}
             <Link
-              href="/login"
+              href="/signin"
               className="text-blue-600 font-semibold hover:underline ml-1"
             >
               Login here

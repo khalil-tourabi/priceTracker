@@ -114,7 +114,7 @@ const Navbar = () => {
 
         <div className="border-l border-[#333] h-6 max-lg:hidden mt-2 pr-5"></div>
 
-          <Link href={'/login'} className="px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]">
+          <Link href={'/signin'} className="px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]">
             Login
           </Link>
           <Link href={'/register'} className="px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]">
