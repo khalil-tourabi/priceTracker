@@ -3,6 +3,7 @@ import img from "../assets/img/preview(1).jpg";
 import piece_of_mind from "../assets/img/peace-of-mind.svg";
 import save_time from "../assets/img/save-yourself-time.svg";
 import first_to_know from "../assets/img/be-the-first-to-know.svg";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -19,12 +20,12 @@ export default function Home() {
           <p className="text-slate-900 text-lg md:text-xl mb-12">
             Stay Ahead, Save Smart: Your Price Tracking Hero!
           </p>
-          <button
-            type="button"
+          <Link
+            href={"/register"}
             className="bg-indigo-600 hover:bg-indigo-700 text-white text-base tracking-wide px-6 py-3 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl"
           >
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -115,12 +116,12 @@ export default function Home() {
                 <li>Web widget</li>
               </ul>
               <div className="mt-6">
-                <a
-                  href="javascript:void(0);"
+                <Link
+                  href="/register"
                   className="text-white bg-indigo-600 hover:bg-indigo-700 p-4 rounded-xl text-sm font-semibold hover:underline"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -399,67 +400,144 @@ export default function Home() {
               Start for free, or unlock higher monitoring frequencies and more
               pages with our premium plans.
             </p>
-            <button
-              type="button"
+            <Link
+              href={"/pricing"}
               className="bg-indigo-600 hover:bg-indigo-700 text-white text-base tracking-wide px-6 py-3 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl"
             >
               See Pricing plans
-            </button>
+            </Link>
           </div>
         </div>
       </center>
 
       {/* Footer */}
       <footer className="bg-slate-50 pb-5 px-10 font-sans tracking-wide">
-      <hr className="border-gray-300 my-12" />
+        <hr className="border-gray-300 my-12" />
 
-      <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-gray-800">About Us</h4>
+            <p className="text-gray-500 mb-2 text-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              gravida, mi eu pulvinar cursus, sem elit interdum mauris.
+            </p>
+          </div>
 
-        <div>
-          <h4 className="text-lg font-bold mb-6 text-gray-800">About Us</h4>
-          <p className="text-gray-500 mb-2 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida,
-            mi eu pulvinar cursus, sem elit interdum mauris.</p>
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-gray-800">Services</h4>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Web Development
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Mobile App Development
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  UI/UX Design
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Digital Marketing
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-gray-800">Resources</h4>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Webinars
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Ebooks
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Templates
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Tutorials
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-gray-800">About Us</h4>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Our Story
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Mission and Values
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Team
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className="text-gray-500 hover:text-gray-800 text-[15px]"
+                >
+                  Testimonials
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div>
-          <h4 className="text-lg font-bold mb-6 text-gray-800">Services</h4>
-          <ul className="space-y-4">
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Web
-              Development</a></li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Mobile App
-              Development</a></li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">UI/UX
-              Design</a></li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Digital Marketing</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-lg font-bold mb-6 text-gray-800">Resources</h4>
-          <ul className="space-y-4">
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Webinars</a>
-            </li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Ebooks</a>
-            </li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Templates</a>
-            </li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Tutorials</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-lg font-bold mb-6 text-gray-800">About Us</h4>
-          <ul className="space-y-4">
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Our Story</a>
-            </li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Mission and
-              Values</a></li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Team</a></li>
-            <li><a href="javascript:void(0)" className="text-gray-500 hover:text-gray-800 text-[15px]">Testimonials</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+      </footer>
     </>
   );
 }

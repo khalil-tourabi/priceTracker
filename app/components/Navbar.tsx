@@ -37,6 +37,14 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
+            <li className="max-lg:border-b max-lg:py-3 max-lg:mt-2">
+              <Link
+                href={"/pricing"}
+                className="hover:text-[#007bff] text-gray-600 block font-bold text-[15px] mr-5"
+              >
+                Pricing
+              </Link>
+            </li>
           </ul>
 
           <div className="border-l border-[#333] h-6 max-lg:hidden mt-2 pr-5"></div>
