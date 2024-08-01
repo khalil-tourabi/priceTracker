@@ -16,7 +16,7 @@ const TrackProduct = () => {
               type="text"
               name="url"
               id="url"
-              className="border border-black rounded-3xl p-2 w-4/5"
+              className="border border-black rounded-3xl p-2 w-4/5 px-4"
             />
             <button
               type="submit"
