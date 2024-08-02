@@ -1,5 +1,7 @@
 import { getProducts } from "@/utils/actions";
 import DeleteButton from "./deleteButton";
+import { redirect } from "next/navigation";
+import DetailsButton from "./detailsButton";
 
 const TrackedProducts = async () => {
   const products = await getProducts();
@@ -57,7 +59,7 @@ const TrackedProducts = async () => {
                           : "N/A"}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-800">
-                        <button className="text-blue-600 mr-4">Details</button>
+                        <DetailsButton id={product.product_id} />
                         <DeleteButton id={product.product_id} />
                       </td>
                     </tr>

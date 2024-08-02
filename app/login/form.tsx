@@ -5,7 +5,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
@@ -31,7 +30,6 @@ const Form = () => {
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
       const result = await signIn("credentials", {
         ...data,
