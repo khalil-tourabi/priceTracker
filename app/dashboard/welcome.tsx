@@ -12,7 +12,7 @@ const Welcome = () => {
 
   return (
     <>
-    <p className='text-3xl font-medium text-right pb-10'>Welcome, Khalil{session?.user?.name}</p>
+    <p className='text-3xl font-medium text-right pb-10'>Welcome, {session?.user?.name}</p>
     </>
   )
 }

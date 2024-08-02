@@ -14,9 +14,9 @@ const TrackedProducts = async () => {
                 <th className="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Product Name
                 </th>
-                <th className="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                {/* <th className="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   URL
-                </th>
+                </th> */}
                 <th className="px-4 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Price
                 </th>
@@ -29,49 +29,55 @@ const TrackedProducts = async () => {
               </tr>
             </thead>
 
-            <tbody className="bg-white divide-y divide-gray-200 whitespace-nowrap">
-              {products.map((product) => {
-                const latestPrice =
-                  product.priceHistories.length > 0
-                    ? product.priceHistories[product.priceHistories.length - 1]
-                    : null;
-                return (
-                  <tr key={product.product_id}>
-                    <td className="px-4 py-4 text-sm text-gray-800">
-                      {product.name}
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-800">
-                      {product.url}
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-800">
-                      {latestPrice ? `$${latestPrice.price.toFixed(2)}` : "N/A"}
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-800">
-                      {latestPrice
-                        ? new Date(latestPrice.timestamp).toLocaleDateString()
-                        : "N/A"}
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-800">
-                      <button className="text-blue-600 mr-4">Details</button>
-                      <DeleteButton id={product.product_id} />
-                    </td>
-                  </tr>
-                );
-              })}
-
-              {/* <tr>
-                <td className="px-4 py-4 text-sm text-gray-800">Product 1</td>
-                <td className="px-4 py-4 text-sm text-gray-800">Product url</td>
-                <td className="px-4 py-4 text-sm text-gray-800">66.99</td>
-                <td className="px-4 py-4 text-sm text-gray-800">2022-05-15</td>
-                <td className="px-4 py-4 text-sm text-gray-800">
-                  <button className="text-blue-600 mr-4">Details</button>
-                  <button className="text-red-600" type="button">
-                    Delete
-                  </button>
-                </td>
-              </tr> */}
-            </tbody>
+            {products.length > 0 ? (
+              <tbody className="bg-white divide-y divide-gray-200 whitespace-nowrap">
+                {products.map((product) => {
+                  const latestPrice =
+                    product.priceHistories.length > 0
+                      ? product.priceHistories[
+                          product.priceHistories.length - 1
+                        ]
+                      : null;
+                  return (
+                    <tr key={product.product_id}>
+                      <td className="px-4 py-4 text-sm text-gray-800">
+                        {product.name}
+                      </td>
+                      {/* <td className="px-4 py-4 text-sm text-gray-800">
+            {product.url}
+          </td> */}
+                      <td className="px-4 py-4 text-sm text-gray-800">
+                        {latestPrice
+                          ? `$${latestPrice.price.toFixed(2)}`
+                          : "N/A"}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-800">
+                        {latestPrice
+                          ? new Date(latestPrice.timestamp).toLocaleDateString()
+                          : "N/A"}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-800">
+                        <button className="text-blue-600 mr-4">Details</button>
+                        <DeleteButton id={product.product_id} />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            ) : (
+              <tbody>
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="px-4 py-4 text-center text-gray-800"
+                  >
+                    <h1 className="text-slate-600">
+                      There are no products being tracked yet
+                    </h1>
+                  </td>
+                </tr>
+              </tbody>
+            )}
           </table>
         </div>
       </div>
