@@ -9,13 +9,15 @@ import cheerio from "cheerio";
 import { TrackNewProduct } from "@/utils/actions";
 
 const schema = z.object({
-  url: z.string().min(1, { message: "URL is required" }).url({ message: "Invalid URL" }),
+  url: z
+    .string()
+    .min(1, { message: "URL is required" })
+    .url({ message: "Invalid URL" }),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 const TrackProduct = () => {
-
   const {
     register,
     handleSubmit,
@@ -24,20 +26,24 @@ const TrackProduct = () => {
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
-  
+
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
       const result = await axios.get(`${data.url}`);
       const $ = cheerio.load(result.data);
 
-      const title = $('h1.-fs20.-pts.-pbxs').text().trim();
+      const title = $("h1.-fs20.-pts.-pbxs").text().trim();
       console.log(`Title: ${title}`);
-      
-      const price = $('span.-b.-ubpt.-tal.-fs24.-prxs').text().trim();
-      console.log(`Price: ${price.split(' ')[0]}`);
 
-      await TrackNewProduct(title, price, data.url);
-      
+      const price = $("span.-b.-ubpt.-tal.-fs24.-prxs").text().trim();
+      console.log(`Price: ${price.split(" ")[0]}`);
+
+      const image = $("img.-fw.-fh").attr("data-src")?.trim();
+      console.log(`Image: ${image}`);
+
+      await TrackNewProduct(title, price, image, data.url);
+
+      // window.location.reload();
     } catch (error) {
       console.error(`Failed to fetch data: ${error}`);
     }

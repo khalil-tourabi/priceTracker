@@ -53,7 +53,7 @@ export const deleteProduct = async (formData: FormData) => {
         redirect('/dashboard')
 }
 
-export const TrackNewProduct = async (title: string, price: string, url: string) => {
+export const TrackNewProduct = async (title: string, price: string, image: any , url: string) => {
     try {
         const session = await getServerSession();
 
@@ -93,7 +93,8 @@ export const TrackNewProduct = async (title: string, price: string, url: string)
             data: {
                 name: title,
                 url,
-                user_id: currentUser.user_id
+                user_id: currentUser.user_id,
+                image
             },
         });
 
@@ -107,9 +108,6 @@ export const TrackNewProduct = async (title: string, price: string, url: string)
                 }
             });
 
-            // if all went great refresh the page
-            // if (newPriceHistory) 
-            //     redirect('/dashboard');
         }
     } catch (error) {
         console.error('Error tracking new product:', error);

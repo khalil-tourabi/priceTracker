@@ -4,6 +4,7 @@ import * as React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { useEffect, useState } from "react";
 import { getProductById } from "@/utils/actions";
+import Image from "next/image";
 
 interface PriceHistory {
   price_id: number;
@@ -18,6 +19,7 @@ interface Product {
   url: string;
   user_id: number;
   priceHistories: PriceHistory[];
+  image: any;
 }
 
 interface Props {
@@ -47,7 +49,7 @@ const ProductPage = ({ params: { id } }: Props) => {
         <div className="grid items-start grid-cols-1 lg:grid-cols-2 gap-6 max-lg:gap-12">
           <div className="w-full lg:sticky top-0 sm:flex gap-2">
             <img
-              src="https://readymadeui.com/images/product2.webp"
+              src={product?.image || "lol"}
               alt="Product"
               className="w-4/5 rounded-md object-cover"
             />
@@ -58,13 +60,20 @@ const ProductPage = ({ params: { id } }: Props) => {
             </h2>
             <div className="flex flex-wrap gap-4 mt-4">
               <p className="text-gray-800 text-xl font-bold">
-                Current Price: <span className="text-gray-600">
+                Current Price:{" "}
+                <span className="text-gray-600">
                   {product ? product.priceHistories[0]?.price : "Loading..."}
-                </span> MAD
+                </span>{" "}
+                MAD
               </p>
               <p className="text-gray-800 text-xl font-bold">
-                Last change occurred in: <span className="text-gray-600">
-                  {product ? new Date(product.priceHistories[0]?.timestamp).toLocaleDateString() : "Loading..."}
+                Last change occurred in:{" "}
+                <span className="text-gray-600">
+                  {product
+                    ? new Date(
+                        product.priceHistories[0]?.timestamp
+                      ).toLocaleDateString()
+                    : "Loading..."}
                 </span>
               </p>
             </div>
@@ -79,39 +88,58 @@ const ProductPage = ({ params: { id } }: Props) => {
                 Product History:
               </h3>
               <h3 className="text-lg font-bold text-gray-800 pl-5">
-                Highest Price: <span className="text-red-600">
-                  {product ? Math.max(...product.priceHistories.map((ph: PriceHistory) => ph.price)) : "Loading..."}
-                </span> MAD
+                Highest Price:{" "}
+                <span className="text-red-600">
+                  {product
+                    ? Math.max(
+                        ...product.priceHistories.map(
+                          (ph: PriceHistory) => ph.price
+                        )
+                      )
+                    : "Loading..."}
+                </span>{" "}
+                MAD
               </h3>
               <h3 className="text-lg font-bold text-gray-800 pl-5">
-                Lowest Price: <span className="text-blue-600">
-                  {product ? Math.min(...product.priceHistories.map((ph: PriceHistory) => ph.price)) : "Loading..."}
-                </span> MAD
+                Lowest Price:{" "}
+                <span className="text-blue-600">
+                  {product
+                    ? Math.min(
+                        ...product.priceHistories.map(
+                          (ph: PriceHistory) => ph.price
+                        )
+                      )
+                    : "Loading..."}
+                </span>{" "}
+                MAD
               </h3>
             </div>
           </div>
         </div>
       </div>
       <div className="max-w-5xl mx-auto pt-10">
-        <h2 className="text-2xl font-bold text-gray-800">Price History chart</h2>
+        <h2 className="text-2xl font-bold text-gray-800">
+          Price History chart
+        </h2>
         <LineChart
-  className="w-full h-4/5"
-  xAxis={[
-    {
-      data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-    },
-  ]}
-  series={[
-    {
-      data: product
-        ? product.priceHistories.map((ph: PriceHistory) => parseInt(ph.price.toString()))
-        : [],
-    },
-  ]}
-  width={500}
-  height={300}
-/>
-
+          className="w-full h-4/5"
+          xAxis={[
+            {
+              data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            },
+          ]}
+          series={[
+            {
+              data: product
+                ? product.priceHistories.map((ph: PriceHistory) =>
+                    parseInt(ph.price.toString())
+                  )
+                : [],
+            },
+          ]}
+          width={500}
+          height={300}
+        />
       </div>
     </div>
   );
