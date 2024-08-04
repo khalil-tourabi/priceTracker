@@ -146,8 +146,6 @@ export const getProductById = async (id: number) => {
         throw new Error('Product not found or not accessible by the current user!');
     }
 
-    console.log(product);
-
     return product;
 }
 
@@ -164,7 +162,7 @@ export const updateAccount = async (formData: FormData) => {
     const session = await getServerSession();
 
     if (!session?.user?.email) {
-        throw new Error('User not authenticated!');
+        throw new Error('User not authenticated, Please sign in to update your account.');
     }
 
     const currentUser = await prisma.user.findUnique({
@@ -182,5 +180,4 @@ export const updateAccount = async (formData: FormData) => {
         })
     }
     console.log('updated');
-
 }
