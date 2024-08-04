@@ -53,7 +53,7 @@ export const deleteProduct = async (formData: FormData) => {
         redirect('/dashboard')
 }
 
-export const TrackNewProduct = async (title: string, price: string, image: any , url: string) => {
+export const TrackNewProduct = async (title: string, price: string, image: any, url: string) => {
     try {
         const session = await getServerSession();
 
@@ -83,11 +83,14 @@ export const TrackNewProduct = async (title: string, price: string, image: any ,
         if (ProductExist)
             throw new Error('Product is already being tracked!')
 
-        // Check if the user has reached the limit of products
+        // Check if the user has reached the limit of products or already purchased premium
         const productCount = await prisma.product.count({ where: { user_id: currentUser.user_id } });
-        if (productCount >= 1)
-            throw new Error('You can only track one product on free plan, if you want to track more products please upgrade your plan.');
-        
+        if (currentUser.premium === false)
+        {
+            if (productCount >= 1)
+                throw new Error('You can only track one product on free plan, if you want to track more products please upgrade your plan.');
+        }
+
         // if the product is not already being tracked create a new one
         const newProduct = await prisma.product.create({
             data: {
@@ -116,7 +119,7 @@ export const TrackNewProduct = async (title: string, price: string, image: any ,
 
 export const getProductById = async (id: number) => {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
         throw new Error('User not authenticated!');
     }
@@ -151,4 +154,33 @@ export const getProductById = async (id: number) => {
 export const redirectToProduct = async (formData: FormData) => {
     const id = formData.get('id') as string
     redirect(`/dashboard/${id}`)
+}
+
+export const updateAccount = async (formData: FormData) => {
+    const update = formData.get('upgrade');
+
+    console.log(update);
+
+    const session = await getServerSession();
+
+    if (!session?.user?.email) {
+        throw new Error('User not authenticated!');
+    }
+
+    const currentUser = await prisma.user.findUnique({
+        where: { email: session.user.email }
+    });
+
+    if (!currentUser) {
+        throw new Error('User not found!');
+    }
+
+    if (update === 'true') {
+        await prisma.user.update({
+            where: { user_id: currentUser.user_id },
+            data: { premium: true }
+        })
+    }
+    console.log('updated');
+
 }

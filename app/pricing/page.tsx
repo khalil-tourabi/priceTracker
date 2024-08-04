@@ -1,4 +1,5 @@
 import React from 'react'
+import UpgradeButton from './upgradeButton'
 
 const Pricing = () => {
   return (
@@ -104,7 +105,7 @@ const Pricing = () => {
                 </li>
               </ul>
 
-              <button type="button" className="w-full mt-6 px-5 py-2.5 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md">Buy now</button>
+              <UpgradeButton />
             </div>
           </div>
 
@@ -153,7 +154,7 @@ const Pricing = () => {
                 </li>
               </ul>
 
-              <button type="button" className="w-full mt-6 px-5 py-2.5 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md">Buy now</button>
+              <UpgradeButton />
             </div>
           </div>
         </div>
